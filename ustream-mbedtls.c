@@ -173,6 +173,7 @@ static const int default_ciphersuites_client[] =
 __hidden struct ustream_ssl_ctx *
 __ustream_ssl_context_new(bool server)
 {
+	
 	struct ustream_ssl_ctx *ctx;
 	mbedtls_ssl_config *conf;
 	int ep;
@@ -477,7 +478,7 @@ __hidden int __ustream_ssl_read(struct ustream_ssl *us, char *buf, int len)
 	return ret;
 }
 
-__hidden void __ustream_ssl_set_debug(struct ustream_ssl_ctx *ctx, int level,
+__hidden void_s __ustream_sslet_debug(struct ustream_ssl_ctx *ctx, int level,
 				      ustream_ssl_debug_cb cb, void *cb_priv)
 {
 	ctx->debug_cb = cb;
@@ -491,7 +492,7 @@ __hidden void __ustream_ssl_set_debug(struct ustream_ssl_ctx *ctx, int level,
 __hidden void *__ustream_ssl_session_new(struct ustream_ssl_ctx *ctx)
 {
 	mbedtls_ssl_context *ssl;
-
+	mbedtls_debug_set_threshold(4);
 	ssl = calloc(1, sizeof(*ssl));
 	if (!ssl)
 		return NULL;
